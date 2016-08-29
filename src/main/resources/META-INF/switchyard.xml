@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="switchyard-example" targetNamespace="urn:com.example.switchyard:switchyard-example:1.0">
+  <sca:composite name="switchyard-example" targetNamespace="urn:com.example.switchyard:switchyard-example:1.0">
+    <sca:component name="ExampleBean">
+      <bean:implementation.bean class="com.example.switchyard.switchyard_example.ExampleBean"/>
+      <sca:service name="Example">
+        <sca:interface.java interface="com.example.switchyard.switchyard_example.Example"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="Example" promote="ExampleBean/Example">
+      <sca:interface.java interface="com.example.switchyard.switchyard_example.Example"/>
+      <resteasy:binding.rest name="rest1">
+        <resteasy:interfaces>com.example.switchyard.switchyard_example.ExampleEndpointResource</resteasy:interfaces>
+        <resteasy:contextPath>example</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+  </sca:composite>
+</sy:switchyard>
